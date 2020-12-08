@@ -1,7 +1,7 @@
 // App.js
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import "./login.css"
 import { signInWithGoogle } from "../firebaseConfig";
 import { auth } from "../firebaseConfig";
 
@@ -32,7 +32,7 @@ const Login = () => {
     useEffect(() => { }, [email]);
 
     return (
-        <div className='user-info'>
+        <div className='container-fluid login-c'>
             {email ? (
                 <div>
                     <div>
@@ -50,7 +50,11 @@ const Login = () => {
           </button>
                 </div>
             ) : (
-                    <button onClick={() => signin()}>SIGN IN WITH GOOGLE</button>
+                    <div className="container login">
+                        <h1 className="signin-text">Google Login</h1>
+
+                        <button onClick={() => signin()} className="container btn btn-light fab fa-google signin"> Google</button>
+                    </div>
                 )}
         </div>
     );
