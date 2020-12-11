@@ -1,0 +1,36 @@
+.login-c{
+   
+    background-size: cover;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+}
+
+.login{
+    border: 1px solid;
+    box-shadow: 5px 10px #888888;
+    padding:auto;
+    height: 50vh;
+    margin-top: 100px;
+    width: 100vh;
+    background: #00FFFF; 
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(79,79,233,0.6057773451177346) 3%, rgba(0,212,255,1) 100%);
+    box-sizing: inherit;
+    box-shadow: khaki;
+}
+.signin{
+    margin-top: 150px;
+    border-radius: 20px;
+    padding-top: 10px;
+}
+.signin-text{
+    padding-top: 20px;
+    text-align: center;
+    font-family: 'Do Hyeon', sans-serif;
+    color: rgba(255, 94, 0, 0.904);
+    font-size: 35px;
+    font-weight: lighter;
+}
+.fa-google{
+    color: orange;
+}
