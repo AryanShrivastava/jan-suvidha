@@ -1,2 +1,4 @@
-pothole detected
-invalid image
+0 normal
+1 potholes
+2 accident
+3 dead animals

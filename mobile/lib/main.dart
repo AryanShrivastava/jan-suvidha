@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jansuvidha/Mlverify.dart';
 
 import 'login_page.dart';
 
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Ml(),
+      home: LoginPage(),
     );
   }
 }
