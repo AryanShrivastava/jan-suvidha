@@ -49,7 +49,7 @@ class _Ml extends State<Ml> {
               height: 20,
             ),
             _outputs != null
-                ? _scratch != "invalid image" ?
+                ?
             RaisedButton(
                 onPressed: () {sendImg(_image);},
               child: Text(
@@ -62,7 +62,7 @@ class _Ml extends State<Ml> {
                 )
             ):Container()
 
-                : Container(),
+               // : Container(),
 
           ],
         ),
