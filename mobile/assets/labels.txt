@@ -1,4 +1,4 @@
-0 normal
-1 potholes
-2 accident
-3 dead animals
+invalid image
+potholes
+accident
+dead animals

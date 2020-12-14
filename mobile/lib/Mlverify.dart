@@ -49,7 +49,7 @@ class _Ml extends State<Ml> {
               height: 20,
             ),
             _outputs != null
-                ?
+            ?
             RaisedButton(
                 onPressed: () {sendImg(_image);},
               child: Text(
@@ -60,7 +60,8 @@ class _Ml extends State<Ml> {
                     background: Paint()..color = Colors.white,
                   ),
                 )
-            ):Container()
+            )
+                :Container()
 
                // : Container(),
 
@@ -92,11 +93,11 @@ class _Ml extends State<Ml> {
       imageMean: 127.5,
       imageStd: 127.5,
     );
-   // var scratch =  "${_outputs[0]["label"]}";
+   var scratch =  "${_outputs[0]["label"]}";
     setState(() {
       _loading = false;
       _outputs = output;
-      //_scratch = scratch;
+      _scratch = scratch;
     });
   }
 
