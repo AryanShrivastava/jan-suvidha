@@ -1,82 +1,89 @@
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
-import 'package:scratcher/scratcher.dart';
+import 'package:scratcher/widgets.dart';
 
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
 
-class AppBody extends StatelessWidget {
-  double _opacity = 0.0;
+class _MyHomePageState extends State<MyHomePage> {
+  ConfettiController _controller;
 
-  Future<void> scratchCardDialog(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-          title: Align(
-            alignment: Alignment.center,
-            child: Text(
-              'You\'ve won a scratch card',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18),
-            ),
-          ),
-          content: StatefulBuilder(builder: (context, StateSetter setState) {
-
-            return Scratcher(
-              accuracy: ScratchAccuracy.low,
-              threshold: 25,
-              brushSize: 50,
-              onThreshold: () {
-                setState(() {
-                  _opacity = 1;
-                });
-              },
-              //imagePath: "assets/diamond_bw.png",
-              child: AnimatedOpacity(
-                duration: Duration(milliseconds: 250),
-                opacity: _opacity,
-                child: Container(
-                  height: 300,
-                  width: 300,
-                  alignment: Alignment.center,
-                  child: Text(
-                    "200\$",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 50,
-                        color: Colors.blue),
-                  ),
-                ),
-              ),
-            );
-          }),
-        );
-      },
+  @override
+  void initState() {
+    super.initState();
+    _controller = new ConfettiController(
+      duration: new Duration(seconds: 2),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: FlatButton(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 35),
-        shape: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(35),
-          borderSide: BorderSide.none,
-        ),
-        color: Colors.blue,
-        child: Text(
-          "Get A ScratchCard",
-          style: TextStyle(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Scratcher(
+          brushSize: 50,
+          threshold: 75,
+          color: Colors.red,
+          image: Image.asset(
+            "assets/outerimage.png",
+            fit: BoxFit.fill,
+          ),
+          onChange: (value) => print("Scratch progress: $value%"),
+          onThreshold: () => _controller.play(),
+          child: Container(
+            height: 300,
+            width: 300,
             color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "images/newimage.png",
+                  fit: BoxFit.contain,
+                  width: 150,
+                  height: 150,
+                ),
+                Column(
+                  children: [
+                    ConfettiWidget(
+                      blastDirectionality: BlastDirectionality.explosive,
+                      confettiController: _controller,
+                      particleDrag: 0.05,
+                      emissionFrequency: 0.05,
+                      numberOfParticles: 100,
+                      gravity: 0.05,
+                      shouldLoop: false,
+                      colors: [
+                        Colors.green,
+                        Colors.red,
+                        Colors.yellow,
+                        Colors.blue,
+                      ],
+                    ),
+                    Text(
+                      "You won",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 25,
+                      ),
+                    ),
+                    Text(
+                      "Rs 20!",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 25,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
-        onPressed: () => scratchCardDialog(context),
       ),
     );
   }

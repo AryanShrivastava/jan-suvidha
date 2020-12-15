@@ -10,26 +10,39 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    AssetImage assetImage = AssetImage("images/gsignin.jpg");
+    Image image = Image(image: assetImage, width: 380, height: 1000.0);
     return Scaffold(
-      body: Container(
-        color: Colors.white,
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              FlutterLogo(size: 150),
-              SizedBox(height: 50),
-              _signInButton(),
-            ],
-          ),
+      body: Stack(children: <Widget>[
+        Container(
+          child: image,
         ),
-      ),
+        /*SizedBox(height: 60),*/
+        Container(
+          child: _signInButton(),
+        ),
+      ]),
+//      Container(
+//        color: Colors.white,
+//        child: Center(
+//          child: Column(
+//            mainAxisSize: MainAxisSize.max,
+//            mainAxisAlignment: MainAxisAlignment.center,
+//            children: <Widget>[
+//
+//              SizedBox(height: 50),
+//              _signInButton(),
+//            ],
+//          ),
+//        ),
+//      ),
     );
   }
 
   Widget _signInButton() {
-    return OutlineButton(
+    return Padding(
+        padding: const EdgeInsets.only(top:450.0 , left:60),
+    child: OutlineButton(
       splashColor: Colors.grey,
       onPressed: () {
         signInWithGoogle().then((result) {
@@ -46,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
       highlightElevation: 0,
-      borderSide: BorderSide(color: Colors.grey),
+      borderSide: BorderSide(color: Colors.black),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
         child: Row(
@@ -60,13 +73,14 @@ class _LoginPageState extends State<LoginPage> {
                 'Sign in with Google',
                 style: TextStyle(
                   fontSize: 20,
-                  color: Colors.grey,
+                  color: Colors.black,
                 ),
               ),
             )
           ],
         ),
       ),
+    ),
     );
   }
 }

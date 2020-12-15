@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jansuvidha/sign_in.dart';
 import 'package:tflite/tflite.dart';
+//import 'package:google_fonts/google_fonts.dart';
 //import 'package:jansuvidha/scratchcard.dart';
-
 class Ml extends StatefulWidget {
   @override
   _Ml createState() => _Ml();
@@ -14,7 +14,7 @@ class _Ml extends State<Ml> {
   List _outputs;
   File _image;
   bool _loading = false;
-  String _scratch;
+
   @override
   void initState() {
     super.initState();
@@ -30,9 +30,6 @@ class _Ml extends State<Ml> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(' Machine Learning'),
-      ),
       body: _loading
           ? Container(
         alignment: Alignment.center,
@@ -49,10 +46,10 @@ class _Ml extends State<Ml> {
               height: 20,
             ),
             _outputs != null
-            ?
+                ?
             RaisedButton(
                 onPressed: () {sendImg(_image);},
-              child: Text(
+                child:Text(
                   "${_outputs[0]["label"]}",
                   style: TextStyle(
                     color: Colors.black,
@@ -61,9 +58,7 @@ class _Ml extends State<Ml> {
                   ),
                 )
             )
-                :Container()
-
-               // : Container(),
+                : Container(),
 
           ],
         ),
@@ -76,7 +71,7 @@ class _Ml extends State<Ml> {
   }
 
   pickImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
     if (image == null) return null;
     setState(() {
       _loading = true;
@@ -93,11 +88,9 @@ class _Ml extends State<Ml> {
       imageMean: 127.5,
       imageStd: 127.5,
     );
-   var scratch =  "${_outputs[0]["label"]}";
     setState(() {
       _loading = false;
       _outputs = output;
-      _scratch = scratch;
     });
   }
 
