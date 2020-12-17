@@ -1,10 +1,14 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Login from './Auth/login/login'
+import Dashboard from './Dashboard/Dashboard'
 const App = () => {
   return (
     <div>
-      <Login />
+      <Switch>
+        <Route path='/login' exact component={Login} />
+        <Route path='/dashboard' component={Dashboard} />
+      </Switch>
     </div>
   )
 }
