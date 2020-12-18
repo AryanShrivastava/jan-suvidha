@@ -25,6 +25,9 @@ const ImageSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    description: {
+      type: String,
+    },
     resolved: {
       type: Boolean,
       default: false,

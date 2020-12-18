@@ -7,7 +7,7 @@ const { tweet } = require("../services/tweet");
 // upload and check image
 exports.uploadImage = async (req, res) => {
   try {
-    const { long, lat, department } = req.body;
+    const { long, lat, department, description } = req.body;
 
     const url = await gcloudUpload(req.file.path);
     console.log(url);
@@ -19,6 +19,7 @@ exports.uploadImage = async (req, res) => {
         coordinates: [long, lat],
       },
       department: department,
+      description: description,
       resolved: false,
     });
 
