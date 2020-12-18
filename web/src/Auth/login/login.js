@@ -22,7 +22,8 @@ const Login = () => {
                 .then((res) => {
                     return (
                         localStorage.setItem('token', res.data.token),
-                        localStorage.setItem('userId', res.data.userId)
+                        localStorage.setItem('userId', res.data.userId),
+                        localStorage.setItem('department', 'a')
                     )
                 })
                 .catch((error) => console.log(error));

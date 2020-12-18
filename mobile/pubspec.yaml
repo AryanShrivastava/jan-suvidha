@@ -35,6 +35,11 @@ dependencies:
   shared_preferences: ^0.5.12+4
   image_picker: ^0.6.7+14
   tflite: ^1.1.1
+  scratcher:
+  carousel_pro:
+  confetti:
+  google_fonts:
+
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +59,18 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/google_logo.png
+    - images/gsignin.jpg
+    - images/newimage.png
+    - images/outerimage.png
+    - images/detect.png
+    - images/gift card.png
+    - images/report.png
+    - images/hi.png
+    - images/google.jpg
+    - images/post.png
+    - images/rewarded.png
+    - images/report12.png
+    - images/detect12.png
     - assets/model_unquant.tflite
     - assets/labels.txt
   # - images/a_dot_ham.jpeg

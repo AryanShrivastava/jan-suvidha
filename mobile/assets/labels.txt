@@ -1,2 +1,4 @@
-pothole detected
 invalid image
+potholes
+accident
+dead animals
