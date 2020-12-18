@@ -10,12 +10,19 @@ const gcloudUpload = async (file) => {
   try {
     const bucket = await storage.bucket("jan-suvidha-images");
     const result = await bucket.upload(file);
-    const name = result[0].metadata.name;
-    const url = `https://storage.googleapis.com/jan-suvidha-images/${name}`;
+    const name = myTrim(result[0].metadata.name);
+    const url = `https://storage.googleapis.com/jan-suvidha-images/${name.replace(
+      /\s/g,
+      ""
+    )}`;
     return url;
   } catch (err) {
     console.error("ERROR:", err);
   }
 };
+
+function myTrim(x) {
+  return x.replace(/^\s+|\s+$/gm, "");
+}
 
 module.exports = { gcloudUpload };

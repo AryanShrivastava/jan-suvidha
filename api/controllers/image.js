@@ -3,6 +3,7 @@ const Image = require("../models/image");
 const { handleError } = require("../services/error");
 const { gcloudUpload } = require("../services/gcloud_bucket");
 const { tweet } = require("../services/tweet");
+const fs = require("fs");
 
 // upload and check image
 exports.uploadImage = async (req, res) => {
@@ -24,6 +25,8 @@ exports.uploadImage = async (req, res) => {
     });
 
     await image.save();
+
+    await tweet(`${description} @AnkitHans15`, fs.readFileSync(req.file.path));
 
     return res.json({
       success: true,
