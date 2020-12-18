@@ -26,7 +26,10 @@ exports.uploadImage = async (req, res) => {
 
     await image.save();
 
-    await tweet(`${description} @AnkitHans15`, fs.readFileSync(req.file.path));
+    await tweet(
+      `${description} @AnkitHans15 @dharini_grover @Anushka12494059`,
+      fs.readFileSync(req.file.path)
+    );
 
     return res.json({
       success: true,
