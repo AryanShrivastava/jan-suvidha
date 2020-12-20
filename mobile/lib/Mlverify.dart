@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jansuvidha/sign_in.dart';
 import 'package:tflite/tflite.dart';
-
+import 'package:carousel_pro/carousel_pro.dart';
 //import 'drawer.dart';
 
 import 'package:jansuvidha/scratchcard.dart';
@@ -31,9 +31,31 @@ class _Ml extends State<Ml> {
   }
 
   @override
+  int currentPage = 0;
+  Widget imageCarousel = new Container(
+      height: 220.0,
+      child: new Carousel(
+        boxFit: BoxFit.cover,
+        images: [
+          NetworkImage(
+              'https://thumbs.dreamstime.com/z/cartoon-people-fixing-hole-highway-industrial-city-roadwork-banner-repair-equipment-heavy-machinery-working-pothole-169603809.jpg'),
+          NetworkImage(
+              'https://thumbs.dreamstime.com/z/car-highway-falling-asphalt-hole-cartoon-man-looking-shock-automobile-pothole-accident-cityscape-backdrop-flat-193690324.jpg'),
+          NetworkImage(
+              'https://media.istockphoto.com/vectors/gift-card-with-blue-bow-vector-id1179439557?k=6&m=1179439557&s=612x612&w=0&h=Gj7OWfomEmRDIZZ_DbA15QImyDaW7-G0DW0AA89G6HY='),
+        ],
+        showIndicator: false,
+        animationCurve: Curves.fastOutSlowIn,
+        animationDuration: Duration(milliseconds: 1000),
+      ),
+  );
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(children: <Widget>[
+        imageCarousel,
+        SizedBox(height: 10),
         RaisedButton(
             onPressed: pickImage,
             child: Text(
