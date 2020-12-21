@@ -42,17 +42,14 @@ class _TabScreen1 extends State<TabPage1> {
                   ),
                   children: [
                     TextSpan(
-                      text: 'Fit',
+                      text: 'Jan',
                       style: TextStyle(color: Colors.black, fontSize: 30),
                     ),
                     TextSpan(
-                      text: 'by',
+                      text: 'Suvidha',
                       style: TextStyle(color: Colors.white, fontSize: 30),
                     ),
-                    TextSpan(
-                      text: 'Mk',
-                      style: TextStyle(color: Colors.black, fontSize: 30),
-                    ),
+                    
                   ]),
             ),
             actions: <Widget>[
