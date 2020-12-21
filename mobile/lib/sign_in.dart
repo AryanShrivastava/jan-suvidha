@@ -75,7 +75,7 @@ Future<UploadImage> sendImg(
     ),
     'long': 10,
     'lat': 10,
-    'department': description,
+    'department': department,
     'description': description,
     'location_text': "PUT LOCATION HERE"
   });
