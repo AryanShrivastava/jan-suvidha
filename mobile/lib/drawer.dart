@@ -49,4 +49,3 @@ class logo extends StatelessWidget {
     );
   }
 }
-
