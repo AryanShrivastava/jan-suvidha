@@ -19,6 +19,7 @@
 
 import 'package:flutter/material.dart';
 import './data.dart';
+import 'home.dart';
 import 'login_page.dart';
 import 'dart:io';
 
@@ -36,19 +37,17 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-
   List<SliderModel> mySLides = new List<SliderModel>();
   int slideIndex = 0;
   PageController controller;
 
-  Widget _buildPageIndicator(bool isCurrentPage){
+  Widget _buildPageIndicator(bool isCurrentPage) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 2.0),
       height: isCurrentPage ? 10.0 : 6.0,
@@ -104,60 +103,74 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        bottomSheet: slideIndex != 2 ? Container(
-          margin: EdgeInsets.symmetric(vertical: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              FlatButton(
-                onPressed: (){
-                  controller.animateToPage(2, duration: Duration(milliseconds: 400), curve: Curves.linear);
-                },
-                splashColor: Colors.green[200],
-                child: Text(
-                  "SKIP",
-                  style: TextStyle(color: Color(0xFF81D4Fa), fontWeight: FontWeight.w600),
-                ),
-              ),
-              Container(
+        bottomSheet: slideIndex != 2
+            ? Container(
+                margin: EdgeInsets.symmetric(vertical: 16),
                 child: Row(
-                  children: [
-                    for (int i = 0; i < 3 ; i++) i == slideIndex ? _buildPageIndicator(true): _buildPageIndicator(false),
-                  ],),
-              ),
-              FlatButton(
-                onPressed: (){
-                  print("this is slideIndex: $slideIndex");
-                  controller.animateToPage(slideIndex + 1, duration: Duration(milliseconds: 500), curve: Curves.linear);
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    FlatButton(
+                      onPressed: () {
+                        controller.animateToPage(2,
+                            duration: Duration(milliseconds: 400),
+                            curve: Curves.linear);
+                      },
+                      splashColor: Colors.green[200],
+                      child: Text(
+                        "SKIP",
+                        style: TextStyle(
+                            color: Color(0xFF81D4Fa),
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    Container(
+                      child: Row(
+                        children: [
+                          for (int i = 0; i < 3; i++)
+                            i == slideIndex
+                                ? _buildPageIndicator(true)
+                                : _buildPageIndicator(false),
+                        ],
+                      ),
+                    ),
+                    FlatButton(
+                      onPressed: () {
+                        print("this is slideIndex: $slideIndex");
+                        controller.animateToPage(slideIndex + 1,
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.linear);
+                      },
+                      splashColor: Colors.lightGreen,
+                      child: Text(
+                        "NEXT",
+                        style: TextStyle(
+                            color: Color(0xFF81D4Fa),
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            : InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TabPage1()));
                 },
-                splashColor: Colors.lightGreen,
-                child: Text(
-                  "NEXT",
-                  style: TextStyle(color: Color(0xFF81D4Fa), fontWeight: FontWeight.w600),
+                child: Container(
+                  height: Platform.isIOS ? 70 : 60,
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: [
+                    const Color(0xFF8BC34a),
+                    const Color(0xFF81D4Fa)
+                  ])),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "GET STARTED NOW",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w600),
+                  ),
                 ),
               ),
-            ],
-          ),
-        ): InkWell(
-          onTap: (){
-            Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => TabPage1())
-            );
-
-          },
-          child: Container(
-            height: Platform.isIOS ? 70 : 60,
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [const Color(0xFF8BC34a), const Color(0xFF81D4Fa)])),
-            alignment: Alignment.center,
-            child: Text(
-              "GET STARTED NOW",
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
-            ),
-          ),
-        ),
       ),
     );
   }
@@ -180,16 +193,17 @@ class SlideTile extends StatelessWidget {
           SizedBox(
             height: 40,
           ),
-          Text(title, textAlign: TextAlign.center,style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 20
-          ),),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+          ),
           SizedBox(
             height: 20,
           ),
-          Text(desc, textAlign: TextAlign.center,style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 14))
+          Text(desc,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14))
         ],
       ),
     );

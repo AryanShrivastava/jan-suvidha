@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:location/location.dart';
 // import 'package:jansuvidha/tabscreen1.dart';
 import 'Mlverify.dart';
 // import 'accidentverify.dart';
@@ -13,6 +14,49 @@ class TabPage1 extends StatefulWidget {
 }
 
 class _TabScreen1 extends State<TabPage1> {
+  // getLocationData() async {
+  //   Location _location = Location();
+  //   var _locationData = await _location.getLocation();
+
+  //   print(_locationData);
+
+  //   return _locationData;
+  // }
+
+  void getLocation() async {
+    Location location = new Location();
+
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
+    LocationData _locationData;
+
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    _locationData = await location.getLocation();
+
+    print(_locationData);
+  }
+
+  @override
+  void initState() {
+    getLocation();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,7 +70,7 @@ class _TabScreen1 extends State<TabPage1> {
               tabs: [
                 Tab(icon: Icon(Icons.home)),
                 Tab(icon: Icon(Icons.restaurant)),
-            Tab(icon: Icon(Icons.laptop_chromebook)),
+                Tab(icon: Icon(Icons.laptop_chromebook)),
               ],
             ),
             backgroundColor: Color(0xff2c7744),
@@ -49,7 +93,6 @@ class _TabScreen1 extends State<TabPage1> {
                       text: 'Suvidha',
                       style: TextStyle(color: Colors.white, fontSize: 30),
                     ),
-                    
                   ]),
             ),
             actions: <Widget>[
@@ -67,7 +110,7 @@ class _TabScreen1 extends State<TabPage1> {
           backgroundColor: Colors.white,
           drawer: Drawer_File(),
           body: new TabBarView(
-            children: [Ml(), Ml(),Ml()],
+            children: [Ml(), Ml(), Ml()],
           ),
         ),
       ),

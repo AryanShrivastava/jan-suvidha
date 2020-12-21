@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:dio/dio.dart';
 import 'package:jansuvidha/model/login.dart';
+import 'package:location/location.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'model/uploadimages.dart';
 
@@ -66,15 +67,37 @@ Future<Login> mobileAuth(String email) async {
 }
 
 Future<UploadImage> sendImg(
-    File image, String department, String description) async {
+  File image,
+  String department,
+  String description,
+) async {
+  Location location = new Location();
+
+  bool _serviceEnabled;
+  PermissionStatus _permissionGranted;
+  LocationData _locationData;
+
+  _serviceEnabled = await location.serviceEnabled();
+  if (!_serviceEnabled) {
+    _serviceEnabled = await location.requestService();
+  }
+
+  _permissionGranted = await location.hasPermission();
+  if (_permissionGranted == PermissionStatus.denied) {
+    _permissionGranted = await location.requestPermission();
+  }
+
+  _locationData = await location.getLocation();
+
+  print(_locationData);
   String fileName = image.path.split('/').last;
   FormData formData = new FormData.fromMap({
     'file': await MultipartFile.fromFile(
       image.path,
       filename: fileName,
     ),
-    'long': 10,
-    'lat': 10,
+    'long': _locationData.longitude,
+    'lat': _locationData.latitude,
     'department': department,
     'description': description,
     'location_text': "PUT LOCATION HERE"
