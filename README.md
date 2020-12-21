@@ -9,12 +9,28 @@
 
 
 ## ❓ Problem Statement
-> 
+> When was the last time you had an undue long halt on the highway? Or you covered your nose watching that carcass lying on the road? When was the last time you swore 'cause you took a road with a pothole to work?
+
+> We got you covered.
+
+> By building Jan Suvidha, giving ad-free access to everyone, we bring to you an app that can assist you to report potholes, emergencies or roadblocks along with a chance to comfort those creatures in misery, screaming for aid on the road.
+
 
 ## 🤔 Challenges we faced
 
 
+
+
 ## 💡 features
+- Jan Suvidha with it’s easy to sign up process(by phone number or Google account) will need camera and location access of the user.
+- As soon as the app is accessed,or the user clicks the picture of an obstruction,  a database will compute the user's geographical coordinates directly, in case the location is turned on or an SOS call is made.
+- The user can categorise the barrier into (i) pothole (ii) dead animal (iii) accident
+- Next, it will lead to a web doorway that's attached to 4 crucial pillars: Municipal corporations, hospitals nearby, police stations and the NHAI.
+- The inbuilt ML prototype will recognize and classify the image clicked by the user  and notify the concerned administrations along with providing them the geo-coordinates, even in the case of SOS calls so that they can reach the location asap.
+- The concerned authorities can sign up or log in as admins. They will have access to a  list of  grievances filed by the users (categorised central / state /municipality wise).
+- On clicking a complaint, the admin can see an array of  details (image, geo coordinates shown on the map,comments etc.)
+- They will now have an option to forward the complaint to the road construction authority responsible.
+- As soon as a rectification response is received from the road authority with proof,it is to be forwarded to the user who filed the complaint.
 
 
 
