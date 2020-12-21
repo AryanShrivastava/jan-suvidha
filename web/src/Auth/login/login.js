@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 import "./login.css"
 import { signInWithGoogle } from "../firebaseConfig";
 import { auth } from "../firebaseConfig";
+import { Redirect } from "react-router-dom";
 
 const Login = () => {
     const [email, updateEmail] = useState(null);
+    const [valid, updateValid] = useState(false);
 
     var unsubscribeFromAuth = null;
 
@@ -23,14 +25,19 @@ const Login = () => {
                     return (
                         localStorage.setItem('token', res.data.token),
                         localStorage.setItem('userId', res.data.userId),
-                        localStorage.setItem('department', 'a')
+                        localStorage.setItem('department', 'a'),
+                        updateValid(true)
                     )
                 })
                 .catch((error) => console.log(error));
         });
     };
 
+
     useEffect(() => { }, [email]);
+    if (valid) {
+        return <Redirect to="/dashboard" />
+    }
 
     return (
         <div className='container-fluid login-c'>

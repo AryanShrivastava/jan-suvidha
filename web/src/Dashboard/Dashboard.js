@@ -12,9 +12,15 @@ const StudentDashboard = () => {
     const [studentID, updateStudentID] = useState(null);
     const [rollNumber, updaterollNumber] = useState(null);
     const [marks, updateMarks] = useState([]);
+    const [images, updateImages] = useState([]);
+
+    // hackinout
+
+
+
     let button = null;
     let text = null;
-    if (!(file && ID)) {
+    if (!ID) {
         button = null;
     }
     else {
@@ -28,7 +34,7 @@ const StudentDashboard = () => {
         };
         await Axios.get('https://jan-suvidha.herokuapp.com/api/v1/admin/getdetails', {
             headers: head,
-        }).then(res => console.log(res))
+        }).then(res => updateImages(res.data.images))
             .catch(err => console.log(err))
     }
     useEffect((e) => {
@@ -44,26 +50,25 @@ const StudentDashboard = () => {
     const submit = async (e) => {
 
         e.preventDefault();
-        const formData = new FormData();
-        formData.append('file', file); // appending file
-        formData.append('name', name);
-        formData.append('rollNumber', rollNumber);
-        formData.append('class', class1);
-        formData.append('subject', subject);
-        formData.append('email', email);
-        formData.append('teacherID', ID);
-        formData.append('studentID', studentID);
-        await Axios.post("http://localhost:5000/student/uploadfiles", formData)
+        const head = {
+            "x-auth-token": localStorage.getItem("token").toString(),
+        };
+
+        await Axios.post("https://jan-suvidha.herokuapp.com/api/v1/admin/resolveissue", {
+            "imageId": ID
+        }, {
+            headers: head
+        })
             .then(res => console.log(res))
             .catch(err => console.log(err))
     }
 
     let score = (
-        marks.map(data => {
+        images.map(data => {
             return (
                 <div className="card">
                     <div className="card-body">
-                        MARKS {data.score}  :  Subject {data.subject}
+                        Image <span><a href={data.url} target="_blank">Image</a></span> :  id {data._id}
                     </div>
                 </div>
             )
@@ -121,31 +126,14 @@ const StudentDashboard = () => {
             </div>
 
             <form className="student-submission" onSubmit={submit}>
+
                 <div className="form-group">
-                    <label for="exampleInputEmail1">Subject</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        aria-describedby="emailHelp"
-                        placeholder="Subject"
-                        onChange={(e) => updateSubject(e.target.value)} />
-                </div>
-                <div className="form-group">
-                    <label for="exampleInputPassword1">TeacherId</label>
+                    <label for="exampleInputPassword1">ImageID</label>
                     <input
                         type="text"
                         className="form-control"
                         placeholder="TeacherId"
                         onChange={(e) => updateTeacherId(e.target.value)} />
-                </div>
-                <div className="form-group">
-                    <label for="exampleInputPassword1">PDF</label>
-                    <input
-                        type="file"
-                        name="file"
-                        className="form-control"
-                        placeholder="Password"
-                        onChange={(e) => updateFile(e.target.files[0])} />
                 </div>
                 <button type="submit" className={button}>{text}</button>
             </form>
