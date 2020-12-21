@@ -3,11 +3,12 @@ const Image = require("../models/image");
 const { handleError } = require("../services/error");
 const { gcloudUpload } = require("../services/gcloud_bucket");
 const { tweet } = require("../services/tweet");
+const fs = require("fs");
 
 // upload and check image
 exports.uploadImage = async (req, res) => {
   try {
-    const { long, lat, department } = req.body;
+    const { long, lat, department, description } = req.body;
 
     const url = await gcloudUpload(req.file.path);
     console.log(url);
@@ -19,10 +20,16 @@ exports.uploadImage = async (req, res) => {
         coordinates: [long, lat],
       },
       department: department,
+      description: description,
       resolved: false,
     });
 
     await image.save();
+
+    await tweet(
+      `${description} @AnkitHans15 @dharini_grover @Anushka12494059`,
+      fs.readFileSync(req.file.path)
+    );
 
     return res.json({
       success: true,

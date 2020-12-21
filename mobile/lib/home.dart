@@ -1,14 +1,80 @@
-//import 'package:flutter/material.dart';
-//import 'package:carousel_pro/carousel_pro.dart';
-//import 'Mlverify.dart';
-//
-//
-//class TabPage1 extends StatefulWidget {
-//  @override
-//  State<StatefulWidget> createState() => new _TabScreen1();
-//}
-//
-//class _TabScreen1 extends State<TabPage1> {
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:jansuvidha/tabscreen1.dart';
+import 'Mlverify.dart';
+import 'drawer.dart';
+import 'login_page.dart';
+
+class TabPage1 extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => new _TabScreen1();
+}
+
+class _TabScreen1 extends State<TabPage1> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: TabBar(
+              tabs: [
+                Tab(icon: Icon(Icons.home)),
+                Tab(icon: Icon(Icons.restaurant)),
+              ],
+            ),
+            backgroundColor: Color(0xff2c7744),
+            title: RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                  text: 'Get',
+                  style: GoogleFonts.portLligatSans(
+                    textStyle: Theme.of(context).textTheme.display1,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: 'Fit',
+                      style: TextStyle(color: Colors.black, fontSize: 30),
+                    ),
+                    TextSpan(
+                      text: 'by',
+                      style: TextStyle(color: Colors.white, fontSize: 30),
+                    ),
+                    TextSpan(
+                      text: 'Mk',
+                      style: TextStyle(color: Colors.black, fontSize: 30),
+                    ),
+                  ]),
+            ),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('Logout',
+                    style: new TextStyle(fontSize: 17.0, color: Colors.black)),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                },
+              ),
+              //Icon(Icons.power_settings_new)
+            ],
+          ),
+          backgroundColor: Colors.white,
+          drawer: Drawer_File(),
+          body: new TabBarView(
+            children: [Ml(), Page1()],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 //  @override
 //  int currentPage = 0;
 //  Widget imageCarousel = new Container(
@@ -22,7 +88,6 @@
 //            'https://thumbs.dreamstime.com/z/car-highway-falling-asphalt-hole-cartoon-man-looking-shock-automobile-pothole-accident-cityscape-backdrop-flat-193690324.jpg'),
 //        NetworkImage(
 //            'https://media.istockphoto.com/vectors/gift-card-with-blue-bow-vector-id1179439557?k=6&m=1179439557&s=612x612&w=0&h=Gj7OWfomEmRDIZZ_DbA15QImyDaW7-G0DW0AA89G6HY='),
-//
 //      ],
 //      showIndicator: false,
 //      animationCurve: Curves.fastOutSlowIn,
@@ -33,22 +98,62 @@
 //  Widget build(BuildContext context) {
 //    return new MaterialApp(
 //      debugShowCheckedModeBanner: false,
-//      theme: new ThemeData(
-//        primarySwatch: Colors.green,
-//      ),
-//      home: new Scaffold(
-//        backgroundColor: Colors.white70,
+//      theme: ThemeData(primarySwatch: Colors.green),
+//      home: Scaffold(
+//        appBar: AppBar(
+//          backgroundColor: Color(0xFFB2FF59),
+//          title: RichText(
+//            textAlign: TextAlign.center,
+//            text: TextSpan(
+//                text: 'JAN',
+//                style: GoogleFonts.portLligatSans(
+//                  textStyle: Theme.of(context).textTheme.display1,
+//                  fontSize: 30,
+//                  fontWeight: FontWeight.w700,
+//                  color: Colors.black,
+//                ),
+//                children: [
+//                  TextSpan(
+//                    text: 'SUVIDHA',
+//                    style: TextStyle(color: Colors.white, fontSize: 30),
+//                  ),
+//                ]),
+//          ),
+//          actions: <Widget>[
+//            new FlatButton(
+//              child: new Text('Logout',
+//                  style: new TextStyle(fontSize: 17.0, color: Colors.black)),
+//              onPressed: () {
+//                Navigator.push(context,
+//                    MaterialPageRoute(builder: (context) => LoginPage()));
+//              },
+//            ),
+//            //Icon(Icons.power_settings_new)
+//          ],
+//        ),
+//        backgroundColor: Colors.white,
+//        drawer: Drawer_File(),
 //        body: new ListView(
 //            padding:
-//            EdgeInsets.only(left: 2.0, top: 10.0, right: 2.0, bottom: 10.0),
+//                EdgeInsets.only(left: 2.0, top: 10.0, right: 2.0, bottom: 10.0),
 //            children: <Widget>[
 //              imageCarousel,
 //              SizedBox(height: 10),
-//              Ml(),
+//              RaisedButton(
+//                  onPressed: () {
+//                    Navigator.push(
+//                        context, MaterialPageRoute(builder: (context) => Ml()));
+//                  },
+//                  child: Text(
+//                    "ML model",
+//                    style: TextStyle(
+//                      color: Colors.black,
+//                      fontSize: 20.0,
+//                      background: Paint()..color = Colors.white,
+//                    ),
+//                  )),
 //              SizedBox(height: 20),
 //            ]),
-//
-//          );
 //      ),
 //    );
 //  }
