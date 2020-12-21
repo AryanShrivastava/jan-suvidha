@@ -142,7 +142,7 @@ class _HomeState extends State<Home> {
           onTap: (){
             Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => LoginPage())
+                MaterialPageRoute(builder: (context) => TabPage1())
             );
 
           },
