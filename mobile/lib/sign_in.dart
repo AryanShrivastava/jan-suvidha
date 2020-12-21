@@ -77,6 +77,7 @@ Future<UploadImage> sendImg(
     'lat': 10,
     'department': description,
     'description': description,
+    'location_text': "PUT LOCATION HERE"
   });
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
