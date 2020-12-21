@@ -117,8 +117,6 @@ class _Ml extends State<Ml> {
                                       _image,
                                       "",
                                       "",
-                                      1,
-                                      1,
                                     );
                                     Navigator.push(
                                         context,
