@@ -28,6 +28,9 @@ const ImageSchema = mongoose.Schema(
     description: {
       type: String,
     },
+    location_text: {
+      type: String,
+    },
     resolved: {
       type: Boolean,
       default: false,

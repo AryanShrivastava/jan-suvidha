@@ -8,7 +8,7 @@ const fs = require("fs");
 // upload and check image
 exports.uploadImage = async (req, res) => {
   try {
-    const { long, lat, department, description } = req.body;
+    const { long, lat, department, description, location_text } = req.body;
 
     const url = await gcloudUpload(req.file.path);
     console.log(url);
@@ -21,6 +21,7 @@ exports.uploadImage = async (req, res) => {
       },
       department: department,
       description: description,
+      location_text: location_text,
       resolved: false,
     });
 

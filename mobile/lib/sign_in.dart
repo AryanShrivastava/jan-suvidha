@@ -65,7 +65,8 @@ Future<Login> mobileAuth(String email) async {
   }
 }
 
-Future<UploadImage> sendImg(File image) async {
+Future<UploadImage> sendImg(
+    File image, String department, String description) async {
   String fileName = image.path.split('/').last;
   FormData formData = new FormData.fromMap({
     'file': await MultipartFile.fromFile(
@@ -74,7 +75,8 @@ Future<UploadImage> sendImg(File image) async {
     ),
     'long': 10,
     'lat': 10,
-    'department': 'central',
+    'department': description,
+    'description': description,
   });
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
