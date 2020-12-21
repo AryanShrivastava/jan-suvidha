@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jansuvidha/tabscreen1.dart';
 import 'Mlverify.dart';
+import 'accidentverify.dart';
+import 'animalverify.dart';
 import 'drawer.dart';
 import 'login_page.dart';
 
@@ -17,13 +19,14 @@ class _TabScreen1 extends State<TabPage1> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.green),
       home: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           appBar: AppBar(
             bottom: TabBar(
               tabs: [
                 Tab(icon: Icon(Icons.home)),
                 Tab(icon: Icon(Icons.restaurant)),
+            Tab(icon: Icon(Icons.laptop_chromebook)),
               ],
             ),
             backgroundColor: Color(0xff2c7744),
@@ -67,7 +70,7 @@ class _TabScreen1 extends State<TabPage1> {
           backgroundColor: Colors.white,
           drawer: Drawer_File(),
           body: new TabBarView(
-            children: [Ml(), Page1()],
+            children: [Ml(), Ml(),Ml()],
           ),
         ),
       ),
